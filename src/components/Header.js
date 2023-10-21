@@ -6,15 +6,15 @@ import CartContext from '../store/cart-context';
 const Header = (props) => {
   const cartCtx = useContext(CartContext);
 
-  let quantity=0;
+  // let quantity=0;
 
-  cartCtx.cartItems.forEach((item)=>{
-    quantity= quantity + Number(item.quantity);
-  })
+  // cartCtx.cartItems.forEach((item)=>{
+  //   quantity= quantity + Number(item.quantity);
+  // })
   return (
     <div className='header'>
       <h1>Shoe Site</h1>
-      <button>Cart {quantity}</button>
+      <button>Cart {cartCtx.totalQuantity}</button>
     </div>
   )
 }

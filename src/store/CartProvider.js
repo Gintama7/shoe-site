@@ -3,7 +3,7 @@ import CartContext from './cart-context';
 
 const CartProvider = (props) => {
 
-  const [items,setItems] = useState([]);
+  const [items,setItems] = useState([{id:'a1',name:'Navy Blue Armanis',price:1299,desc:'100% cotton',lg:98,med:77,sm:12 },]);
   const [cartItems,setCartItems] = useState([]);
   const [totalAmount,setTotalAmount] = useState(0);
   const [totalQuantity,setTotalQuantity] = useState(0);
@@ -18,7 +18,7 @@ const CartProvider = (props) => {
 
   const addItemToCartHandler=(item)=>{
     const existingItem = cartItems.find((obj) => obj.id === item.id);
-    console.log(item.lg,item.sm,item.med);
+
   
       if (existingItem) {
         const updatedCart = cartItems.map((cartItem) =>
@@ -26,6 +26,7 @@ const CartProvider = (props) => {
         );
         setCartItems(updatedCart); 
         const fullQuantity = existingItem.lg+existingItem.sm+existingItem.med;
+        setTotalQuantity(fullQuantity);
         console.log(fullQuantity)
         const updatedAmount= (existingItem.price*fullQuantity);       
         setTotalAmount(prev=>prev+updatedAmount);
@@ -34,6 +35,7 @@ const CartProvider = (props) => {
         const fullQuantity = item.lg+item.sm+item.med;
         setTotalAmount(prev=>prev+(item.price*fullQuantity));
         console.log(fullQuantity)
+        setTotalQuantity(fullQuantity)
       }
   }
 
